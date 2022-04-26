@@ -13,4 +13,5 @@ const requests = {
   fetchNetflixOriginals: `/discover/tv?api_key=${API_KEY}&language=en-US&with_networks=213`,
   fetchAdventureMovies: `/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=12`,
 };
-export default requests;
+
+export {requests, API_KEY};

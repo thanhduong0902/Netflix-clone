@@ -1,7 +1,7 @@
 import axios from "./axios";
 import React, { useEffect, useState } from "react";
 import "./Banner.css";
-import requests from "./Requests";
+import {requests} from "./Requests";
 function Banner() {
   const [movie, setMovie] = useState([]);
 
@@ -18,7 +18,6 @@ function Banner() {
     fetchData();
   }, []);
 
-  console.log(movie);
   const trancate = (string, n) => {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;
   };

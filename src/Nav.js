@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Nav.css";
-function Nav() {
+import Search from "./Search";
+
+function Nav(props) {
   const [show, handleShow] = useState(false);
+  const [type, setType] = useState("");
+
   const transitionNavBar = () => {
     if (window.scrollY > 100) {
       handleShow(true);
@@ -14,6 +18,11 @@ function Nav() {
     window.addEventListener("scroll", transitionNavBar);
     return () => window.removeEventListener("scroll", transitionNavBar);
   }, []);
+
+  const handleChange = (event) => {
+    setType(event.target.value);
+  };
+
   return (
     <div className={`nav ${show && "nav__black"}`}>
       <div className="nav__contents">
@@ -29,12 +38,19 @@ function Nav() {
           <h2 className="tv-series" style={{ color: "white" }}>
             Tv Series
           </h2>
-          <select>
-            <option>Types</option>
-            <option>Action</option>
-            <option>Horror</option>
-          </select>
         </div>
+
+        <Search
+          searchText={props.searchText}
+          setSearchText={props.setSearchText}
+          content={props.content}
+          setContent={props.setContent}
+          numOfPages={props.numOfPages}
+          page={props.page}
+          showSearch={props.showSearch}
+          setShowSearch={props.setShowSearch}
+        />
+
         <div>
           <img
             className="nav__avatar"
