@@ -17,9 +17,8 @@ function Search(props) {
 
       props.setContent(dataMovies.data.results.concat(dataTv.data.results));
 
-      props.setNumOfPages(
-        dataMovies.data.total_pages + dataTv.data.total_pages
-      );
+      const totalPages = dataMovies.data.total_pages + dataTv.data.total_pages;
+      props.setNumOfPages(totalPages);
     } catch (error) {
       console.log(error);
     }

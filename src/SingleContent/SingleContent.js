@@ -17,8 +17,16 @@ function SingleContent({ id, poster, title, date, media_type, vote_average }) {
       />
       <b className="title">{title}</b>
       <span className="subTitle">
-        {media_type === "tv" ? "TV Series" : "Movies"}
-        <span className="subTitle">{date}</span>
+        {media_type === "tv"
+          ? "TV Series"
+          : media_type === "movie"
+          ? "movies"
+          : ""}
+        <span
+          className="subTitle"
+        >
+          {date}
+        </span>
       </span>
     </div>
   );

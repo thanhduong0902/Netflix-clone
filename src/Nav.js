@@ -4,7 +4,6 @@ import Search from "./Search";
 
 function Nav(props) {
   const [show, handleShow] = useState(false);
-  const [type, setType] = useState("");
 
   const transitionNavBar = () => {
     if (window.scrollY > 100) {
@@ -18,10 +17,6 @@ function Nav(props) {
     window.addEventListener("scroll", transitionNavBar);
     return () => window.removeEventListener("scroll", transitionNavBar);
   }, []);
-
-  const handleChange = (event) => {
-    setType(event.target.value);
-  };
 
   return (
     <div className={`nav ${show && "nav__black"}`}>
@@ -45,7 +40,7 @@ function Nav(props) {
           setSearchText={props.setSearchText}
           content={props.content}
           setContent={props.setContent}
-          numOfPages={props.numOfPages}
+          setNumOfPages={props.setNumOfPages}
           page={props.page}
           showSearch={props.showSearch}
           setShowSearch={props.setShowSearch}
