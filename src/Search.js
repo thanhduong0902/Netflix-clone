@@ -10,14 +10,19 @@ function Search(props) {
         `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${props.searchText}&page=${props.page}&include_adult=false`
       );
 
-      const dataTv = await axios.get(
-        `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&language=en-US&query=${props.searchText}&page=${props.page}&include_adult=false`
-      );
+      // const dataTv = await axios.get(
+      //   `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&language=en-US&query=${props.searchText}&page=${props.page}&include_adult=false`
+      // );
 
-      props.setContent(dataMovies.data.results.concat(dataTv.data.results));
+      // props.setContent(dataMovies.data.results.concat(dataTv.data.results));
 
-      const totalPages = dataMovies.data.total_pages + dataTv.data.total_pages;
-      props.setNumOfPages(totalPages);
+      // const totalPages = dataMovies.data.total_pages + dataTv.data.total_pages;
+      // props.setNumOfPages(totalPages);
+
+
+      props.setContent(dataMovies.data.results);
+
+      props.setNumOfPages(dataMovies.data.page);
     } catch (error) {
       console.log(error);
     }
