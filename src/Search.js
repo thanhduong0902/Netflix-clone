@@ -4,12 +4,16 @@ import "./Search.css";
 import { API_KEY } from "./Requests";
 
 function Search(props) {
+  const {page} = props
   const fetchSearch = async () => {
     try {
-      const dataMovies = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${props.searchText}&page=${props.page}&include_adult=false`
-      );
+      // const dataMovies = await axios.get(
+      //   `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${props.searchText}&page=${props.page}&include_adult=false`
+      // );
 
+      const dataMovies = await axios.get(
+        `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${props.searchText}&language=en-US&page=${page}&include_adult=false`
+      );
       // const dataTv = await axios.get(
       //   `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&language=en-US&query=${props.searchText}&page=${props.page}&include_adult=false`
       // );
@@ -22,7 +26,7 @@ function Search(props) {
 
       props.setContent(dataMovies.data.results);
 
-      props.setNumOfPages(dataMovies.data.page);
+      props.setNumOfPages(dataMovies.data.total_pages);
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +35,7 @@ function Search(props) {
   useEffect(() => {
     window.scroll(0, 0);
     fetchSearch();
-  }, [props.page]);
+  }, [page]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
