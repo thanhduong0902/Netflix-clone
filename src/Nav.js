@@ -35,16 +35,7 @@ function Nav(props) {
           </h2>
         </div>
 
-        <Search
-          searchText={props.searchText}
-          setSearchText={props.setSearchText}
-          content={props.content}
-          setContent={props.setContent}
-          setNumOfPages={props.setNumOfPages}
-          page={props.page}
-          showSearch={props.showSearch}
-          setShowSearch={props.setShowSearch}
-        />
+        <Search />
 
         <div>
           <img

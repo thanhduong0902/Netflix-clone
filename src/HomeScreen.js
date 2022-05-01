@@ -1,56 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "./HomeScreen.css";
 import Banner from "./Banner";
 import Nav from "./Nav";
 import { requests } from "./Requests";
 import Row from "./Row";
-import "./HomeScreen.css";
 import Container from "@mui/material/Container";
-
-import SingleContent from "./SingleContent/SingleContent";
-import CustomPagination from "./pagination/CustomPagination";
+import HomeSearch from "./search_list/HomeSearch";
+import { SearchContext } from "./context/SearchContext";
 
 function HomeScreen() {
-  const [searchText, setSearchText] = useState("");
-  const [content, setContent] = useState([]);
-  const [numOfPages, setNumOfPages] = useState();
-  const [page, setPage] = useState(1);
-  const [showSearch, setShowSearch] = useState(false);
+  const { content, searchText, showSearch } = useContext(SearchContext);
 
   return (
     <div className="homeScreen">
-      <Nav
-        searchText={searchText}
-        setSearchText={setSearchText}
-        content={content}
-        setContent={setContent}
-        setNumOfPages={setNumOfPages}
-        page={page}
-        showSearch={showSearch}
-        setShowSearch={setShowSearch}
-      />
+      <Nav />
       <Banner />
 
       <Container>
         {content.length >= 1 ? (
-          <>
-            <div className="search__list">
-              {content &&
-                content.map((item) => (
-                  <SingleContent
-                    key={item.id}
-                    id={item.id}
-                    poster={item.poster_path}
-                    title={item.title || item.name}
-                    date={item.first_air_date || item.release_date}
-                    media_type={item.media_type}
-                    vote_average={item.vote_average}
-                  />
-                ))}
-            </div>
-
-              <CustomPagination setPage={setPage} numOfPages={numOfPages} />
-          </>
+          <HomeSearch />
         ) : (
           <>
             {searchText && showSearch === true && (
@@ -83,7 +51,7 @@ function HomeScreen() {
         )}
       </Container>
     </div>
-  );
+  )
 }
 
 export default HomeScreen;
