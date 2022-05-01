@@ -9,9 +9,9 @@ const requests = {
   fetchRomanceMovies: `/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=10749`,
   fetchDocumentaries: `/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=99`,
   fetchTrending: `/trending/all/week?api_key=${API_KEY}`,
-  fetchTopRated: `/movie/top_rated?api_key=${API_KEY}&language=en-US`,
-  fetchNetflixOriginals: `/discover/tv?api_key=${API_KEY}&language=en-US&with_networks=213`,
+
+  fetchNetflixOriginals: `movie/popular?api_key=${API_KEY}&language=en-US`,
   fetchAdventureMovies: `/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=12`,
 };
 
-export {requests, API_KEY};
+export { requests, API_KEY };

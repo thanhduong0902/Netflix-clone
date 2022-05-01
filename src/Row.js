@@ -6,7 +6,7 @@ import { img_300, unavailable } from "./config/config";
 import ContentModal from "./ContentModal/ContentModal";
 function Row({ title, fetchUrl, isLargeRow = false }) {
   const [movies, setMovies] = useState([]);
-  const base_url = "https://image.tmdb.org/t/p/original/";
+
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(fetchUrl);
@@ -23,7 +23,10 @@ function Row({ title, fetchUrl, isLargeRow = false }) {
       <h2>{title}</h2>
       <div className="row__posters">
         {movies.map((movie) => (
-          <ContentModal id={movie.id}>
+          <ContentModal
+            id={movie.id}
+            media_type={movie.media_type === "tv" ? "tv" : "movie"}
+          >
             <Badge
               badgeContent={movie.vote_average}
               color={movie.vote_average > 6 ? "primary" : "secondary"}

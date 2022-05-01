@@ -6,7 +6,6 @@ import { requests } from "./Requests";
 import Row from "./Row";
 import "./HomeScreen.css";
 import Container from "@mui/material/Container";
-
 import SingleContent from "./SingleContent/SingleContent";
 import CustomPagination from "./pagination/CustomPagination";
 
@@ -43,7 +42,7 @@ function HomeScreen() {
                     poster={item.poster_path}
                     title={item.title || item.name}
                     date={item.first_air_date || item.release_date}
-                    media_type={item.media_type}
+                    media_type={item.media_type === "tv" ? "tv" : "movie"}
                     vote_average={item.vote_average}
                   />
                 ))}
@@ -68,7 +67,6 @@ function HomeScreen() {
             <Row
               title="NETFLIX ORIGINALS"
               fetchUrl={requests.fetchNetflixOriginals}
-              isLargeRow
             />
             <Row title="Trending Now" fetchUrl={requests.fetchTrending} />
             <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} />

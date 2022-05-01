@@ -7,7 +7,8 @@
 
 .ContentModal__portrait {
   display: none;
-  object-fit: contain;
+  height: 500px;
+  width: 300px;
   border-radius: 10px;
 }
 
@@ -63,14 +64,19 @@
 .ContentModal__description::-webkit-scrollbar {
   display: none;
 }
-
+iframe {
+  margin-top:20px;
+  
+  height: 580px;
+  position: absolute;
+}
 @media (min-width: 835px) {
   .ContentModal__landscape {
     display: none;
   }
   .ContentModal__portrait {
     display: flex;
-    width: 38%;
+    
   }
   .ContentModal {
     flex-direction: row;
@@ -81,6 +87,8 @@
     width: 58%;
     padding: 0;
     height: 100%;
+    display: flex;
+    flex-direction: column;
   }
   .ContentModal__title {
     font-size: 3.5vw;
@@ -88,4 +96,5 @@
   .ContentModal__description {
     font-size: 22px;
   }
+  
 }
