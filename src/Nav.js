@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Nav.css";
-import Search from "./Search";
+import {NavLink} from 'react-router-dom'
 
-function Nav(props) {
+const activeClass=(params)=>{
+  return params.isActive?"active-menu":"active-menu-items";
+}
+function Nav() {
   const [show, handleShow] = useState(false);
-
   const transitionNavBar = () => {
     if (window.scrollY > 100) {
       handleShow(true);
@@ -17,35 +19,25 @@ function Nav(props) {
     window.addEventListener("scroll", transitionNavBar);
     return () => window.removeEventListener("scroll", transitionNavBar);
   }, []);
-
   return (
     <div className={`nav ${show && "nav__black"}`}>
       <div className="nav__contents">
         <div className="nav-left">
-          <img
+         <NavLink to="/"> <img
             className="nav__logo"
             src="https://www.freepnglogos.com/uploads/netflix-logo-drawing-png-19.png"
             alt=""
-          />
-          <h2 className="movies" style={{ color: "white" }}>
-            Movies
-          </h2>
-          <h2 className="tv-series" style={{ color: "white" }}>
-            Tv Series
-          </h2>
+          /></NavLink>
+           <NavLink  className={activeClass} to="/Movies"><h2>Movies</h2></NavLink>
+          
+           <NavLink className={activeClass} to ="/TvSeries"><h2>TvSeries</h2> </NavLink>
+          
+          <select>
+            <option>Types</option>
+            <option>Action</option>
+            <option>Horror</option>
+          </select>
         </div>
-
-        <Search
-          searchText={props.searchText}
-          setSearchText={props.setSearchText}
-          content={props.content}
-          setContent={props.setContent}
-          setNumOfPages={props.setNumOfPages}
-          page={props.page}
-          showSearch={props.showSearch}
-          setShowSearch={props.setShowSearch}
-        />
-
         <div>
           <img
             className="nav__avatar"

@@ -1,13 +1,13 @@
-import axios from "./axios";
+import axios from "../axios";
 import React, { useEffect, useState } from "react";
-import "./Banner.css";
-import requests from "./Requests";
-function Banner() {
+import "../Banner.css";
+import requests from "../Requests";
+function BannerMovies() {
   const [movie, setMovie] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get(requests.fetchNetflixOriginals);
+      const request = await axios.get(requests.fetchTVMovies);
       setMovie(
         request.data.results[
           Math.floor(Math.random() * request.data.results.length - 1)
@@ -47,5 +47,4 @@ function Banner() {
     </header>
   );
 }
-
-export default Banner;
+export default BannerMovies;
